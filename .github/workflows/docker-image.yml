@@ -28,9 +28,11 @@ jobs:
     - name: Build docker image
       run: |
         docker build -t galaag/grapghql:0.0.2 .
+        docker build -t galaag/grapghql:latest .
 
     - name: Push docker image to dockerhub
       run: |
         docker push galaag/grapghql:0.0.2
+        docker push galaag/grapghql:latest
     # - name: Build the Docker image
     #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
