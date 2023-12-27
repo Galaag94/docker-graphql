@@ -23,8 +23,14 @@ jobs:
         DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
         DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
       run: |
-        echo "Initializing login"
         docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
-        echo "Finalizing login"
+
+    - name: Build docker image
+      run: |
+        docker build -t galaag/grapghql:0.0.2 .
+
+    - name: Push docker image to dockerhub
+      run: |
+        docker push galaag/grapghql:0.0.2
     # - name: Build the Docker image
     #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
